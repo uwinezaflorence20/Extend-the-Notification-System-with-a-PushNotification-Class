@@ -7,13 +7,11 @@ enum NotificationPriority {
 public interface NotificationService {
     void sendNotification(String message, NotificationPriority priority);
 
-    // Default method to set default priority (can be overridden)
     default void setDefaultPriority(String priority) {
-        // Default implementation does nothing
     }
 }
 
-// Email Notification Implementation
+
 class EmailNotification implements NotificationService {
     @Override
     public void sendNotification(String message, NotificationPriority priority) {
@@ -21,7 +19,7 @@ class EmailNotification implements NotificationService {
     }
 }
 
-// SMS Notification Implementation
+
 class SMSNotification implements NotificationService {
     @Override
     public void sendNotification(String message, NotificationPriority priority) {
@@ -29,12 +27,11 @@ class SMSNotification implements NotificationService {
     }
 }
 
-// Push Notification Implementation with deviceId and overriding default method
+
 class PushNotification implements NotificationService {
     private String deviceId;
     private String defaultPriority = "MEDIUM";
 
-    // Constructor to initialize the deviceId
     public PushNotification(String deviceId) {
         this.deviceId = deviceId;
     }
